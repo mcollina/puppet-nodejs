@@ -6,6 +6,7 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.vm.host_name = 'nodejs'
   config.vm.share_folder "nodejs", "/tmp/vagrant-puppet/modules/nodejs", "."
+  config.vm.provision :shell, :inline => "apt-get update -y; gem install puppet --no-rdoc --no-ri"
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "test"
     puppet.manifest_file = "vagrant.pp"
